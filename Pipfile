@@ -17,3 +17,6 @@ python_version = "3.10"
 
 [pipenv]
 allow_prereleases = true
+
+[scripts]
+start = "python src/main.py"

@@ -3,6 +3,7 @@ import json
 import httpx
 from playsound import playsound
 from pathlib import Path
+import os
 
 
 class Metan:
@@ -25,7 +26,7 @@ class Metan:
 
         # TODO: separate HOST_URL data to speaker base model
         # TODO: allowing connections from other than local
-        self.host_url = "http://localhost:50121"
+        self.host_url = os.getenv("VOICEVOX_HOST_URL", "http://localhost:50121")
 
     def play_sound(self, message, filename="temp.wav"):
         if len(message) == 0:
