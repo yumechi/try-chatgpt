@@ -28,7 +28,7 @@ class Metan:
         # TODO: allowing connections from other than local
         self.host_url = os.getenv("VOICEVOX_HOST_URL", "http://localhost:50121")
 
-    def play_sound(self, message, filename="temp.wav"):
+    def play_sound(self, message, filename="temp.wav") -> None:
         if len(message) == 0:
             raise ValueError("empty message")
         store_path = self.STORE_PATH / filename

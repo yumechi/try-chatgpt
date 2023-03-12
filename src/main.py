@@ -1,5 +1,4 @@
 from speaker.metan import Metan
-import json
 import os
 import openai
 import time
@@ -17,18 +16,21 @@ def get_temp_filename() -> str:
     # TODO: こちらから注入すべきかは悩ましい
     return get_current_timestamp() + ".wav"
 
-def remove_control_characters(s):
+
+def remove_control_characters(s) -> str:
     # refer: https://stackoverflow.com/questions/4324790/removing-control-characters-from-a-string-in-python
-    return "".join(ch for ch in s if unicodedata.category(ch)[0]!="C")
+    return "".join(ch for ch in s if unicodedata.category(ch)[0] != "C")
+
 
 def safety_input(title: str) -> str:
     while True:
         try:
             t = input(title)
             return remove_control_characters(t)
-        except:
+        except:  # noqa: E722
             pass
     raise Exception("Not reach this line")
+
 
 def run(text: str) -> None:
     message_stack = [
