@@ -45,8 +45,12 @@ def run(text: str) -> None:
             messages=message_stack,
         )
         openai_message = response.choices[0].message.content
-        metan = Metan(style=0)
-        metan.play_sound(openai_message, get_temp_filename())
+        try:
+            metan = Metan(style=0)
+            metan.play_sound(openai_message, get_temp_filename())
+        except:  # noqa: E722
+            # if voicevox does not work...
+            print(f"system answer:\n{openai_message}")
         text = safety_input(
             "What is your next step? (If you are finished talking, please type 'quit'.)\n> "
         )
