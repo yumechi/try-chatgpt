@@ -16,3 +16,7 @@ VOICEVOXはDockerで起動する。
 docker pull voicevox/voicevox_engine:nvidia-ubuntu20.04-latest
 docker run --rm --gpus all -p '127.0.0.1:50121:50021' voicevox/voicevox_engine:nvidia-ubuntu20.04-latest
 ```%
+
+## クレジット
+
+VOICEVOX:四国めたん を利用して読み上げをしています。
