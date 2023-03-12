@@ -1,6 +1,11 @@
 # try-chatgpt
 ChatGPTを試す場所
 
+## 確認動作環境
+
+- OS: Ubuntu 20.04 on WSL2
+- GPU: NVIDIA GeForce RTX 2070 SUPER
+
 ## HOW TO
 
 ```shell
@@ -15,7 +20,7 @@ VOICEVOXはDockerで起動する。
 ```shell
 docker pull voicevox/voicevox_engine:nvidia-ubuntu20.04-latest
 docker run --rm --gpus all -p '127.0.0.1:50121:50021' voicevox/voicevox_engine:nvidia-ubuntu20.04-latest
-```%
+```
 
 ## クレジット
 
