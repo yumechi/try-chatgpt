@@ -31,6 +31,13 @@ def safety_input(title: str) -> str:
             pass
     raise Exception("Not reach this line")
 
+def request_openai(message_stack: list[str]) -> str:
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=message_stack,
+    )
+    content = response.choices[0].message.content
+    return content.strip()
 
 def run(text: str) -> None:
     message_stack = [
@@ -40,11 +47,7 @@ def run(text: str) -> None:
         },
     ]
     while text:
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=message_stack,
-        )
-        openai_message = response.choices[0].message.content
+        openai_message = request_openai(message_stack)
         try:
             metan = Metan(style=0)
             metan.play_sound(openai_message, get_temp_filename())
