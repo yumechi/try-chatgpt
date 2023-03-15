@@ -13,6 +13,8 @@ playsound = "*"
 [dev-packages]
 black = "*"
 flake8 = "*"
+mypy = "*"
+types-playsound = "*"
 
 [requires]
 python_version = "3.10"

@@ -4,6 +4,7 @@ import httpx
 from playsound import playsound
 from pathlib import Path
 import os
+from typing import Any
 
 
 class Metan:
@@ -40,26 +41,26 @@ class Metan:
         self.__play_sound(store_path)
         self.__remove_file(store_path)
 
-    def __get_audio_query(self, message: str) -> dict[any, any]:
+    def __get_audio_query(self, message: str) -> dict[Any, Any]:
         url = self.host_url + "/audio_query"
         params = {
             "text": message,
             "speaker": self.style,
         }
-        res = httpx.post(url, params=params, timeout=10.0)
+        res = httpx.post(url, params=params, timeout=10.0)  # type: ignore
         if res.status_code != http.HTTPStatus.OK:
             raise Exception(
                 f"request audio query error: {res.status_code=}, {res.text}"
             )
         return res.json()
 
-    def __get_synthesis(self, audio_query: dict[any, any]) -> bytes:
+    def __get_synthesis(self, audio_query: dict[Any, Any]) -> bytes:
         url = self.host_url + "/synthesis"
         params = {
             "speaker": self.style,
         }
         res = httpx.post(
-            url, params=params, content=json.dumps(audio_query), timeout=10.0
+            url, params=params, content=json.dumps(audio_query), timeout=10.0  # type: ignore 
         )
         if res.status_code != http.HTTPStatus.OK:
             raise Exception(f"request synthesis error: {res.status_code=}, {res.text}")

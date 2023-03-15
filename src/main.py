@@ -17,7 +17,7 @@ def get_temp_filename() -> str:
     return get_current_timestamp() + ".wav"
 
 
-def remove_control_characters(s) -> str:
+def remove_control_characters(s: str) -> str:
     # refer: https://stackoverflow.com/questions/4324790/removing-control-characters-from-a-string-in-python
     return "".join(ch for ch in s if unicodedata.category(ch)[0] != "C")
 
@@ -31,13 +31,15 @@ def safety_input(title: str) -> str:
             pass
     raise Exception("Not reach this line")
 
-def request_openai(message_stack: list[str]) -> str:
+
+def request_openai(message_stack: list[dict[str, str]]) -> str:
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=message_stack,
     )
     content = response.choices[0].message.content
     return content.strip()
+
 
 def run(text: str) -> None:
     message_stack = [
